@@ -4,4 +4,3 @@ venv
 /post/migrations/__pycache__/
 db.sqlite3
 /media/images/
-/post/migrations/

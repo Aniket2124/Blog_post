@@ -1,0 +1,18 @@
+{% extends 'post/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-3">
+  <div class="row">
+      <div class="col-md-8 card mb-4  mt-5 left  top">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-primary" name="draft">Save as Draft</button>
+            <button type="submit" class="btn btn-success" name="post">Post Blog</button>
+            
+        </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

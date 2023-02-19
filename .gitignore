@@ -1,0 +1,7 @@
+venv
+/core/__pycache__/
+/post/__pycache__/
+/post/migrations/__pycache__/
+db.sqlite3
+/media/images/
+/post/migrations/

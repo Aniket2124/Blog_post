@@ -1,0 +1,46 @@
+{% extends 'post/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+{% block content %}
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h3 class=" site-heading my-4 mt-3 text-white"> Welcome to Blog Post</h3>
+                    <p class="text-light" style="font-weight: bold;">The first step in blogging is not writing them but reading them...!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+            {{post.author}}
+            {% for posted in post_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ posted.title }}</h2>
+                    <p class="card-text text-muted h6">{{ posted.author }} | {{ posted.creation_date}} </p>
+                    <p class="card-text">{{posted.content|slice:":200" }}</p>
+                    <p class="card-text text-muted h6">{{ posted.published_date}} </p>
+                    <a href="{% url 'post_detail' posted.pk  %}" class="btn btn-primary">Read More &rarr;</a>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+   
+    </div>
+</div>
+
+
+{% endblock content %}
+
+
+        

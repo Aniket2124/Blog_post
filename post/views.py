@@ -25,13 +25,16 @@ class DraftPost(ListView):
         return Post.objects.filter(is_draft = True, author = self.request.user).order_by('-published_date')
 
 
-class IndexView(ListView):
+class PostListView(ListView):
     model = Post
     template_name = 'post/index.html'
     context_object_name = 'post_list'
 
 
     def get_queryset(self):
+        """
+        This are the list of published Blogs
+        """
         return Post.objects.filter(is_published = True).order_by('-is_published')
     
 

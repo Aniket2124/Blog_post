@@ -5,24 +5,28 @@ from django.views.generic import CreateView,ListView, UpdateView,DetailView
 from.models import Post
 from .forms import PostForm, SignupForm
 from django.urls import reverse_lazy
+
+
 # Create your views here.
 class HomeView(ListView):
     model = Post
     template_name = 'post/home.html'
     context_object_name = 'post_list'
 
-
     def get_queryset(self):
         return Post.objects.filter(is_published = True, author = self.request.user).order_by('-published_date')
+
 
 class DraftPost(ListView):
     model = Post
     template_name = 'post/home.html'
-    context_object_name = 'post_list'
-
+    context_object_name = 'post_list'    
 
     def get_queryset(self):
-        return Post.objects.filter(is_draft = True, author = self.request.user).order_by('-published_date')
+        if self.request.user.is_authenticated:
+            return Post.objects.filter(is_draft = True, author = self.request.user).order_by('-published_date')
+        else:
+            return Post.objects.none()
 
 
 class PostListView(ListView):
